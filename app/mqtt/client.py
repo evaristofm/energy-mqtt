@@ -10,7 +10,7 @@ fast_mqtt = FastMQTT(config=mqtt_config)
 
 @fast_mqtt.on_connect()
 def connect(client, flags: int, rc: int, properties: Any):
-    client.subscribe("/mqtt")  # subscribing mqtt topic
+    client.subscribe("/messages")  # subscribing mqtt topic
     print("Connected: ", client, flags, rc, properties)
 
 
@@ -20,12 +20,9 @@ async def message(client: MQTTClient, topic: str, payload: bytes, qos: int, prop
 
 
 @fast_mqtt.subscribe("#", qos=2)
-async def message_to_topic_with_high_qos(
-    client: MQTTClient, topic: str, payload: bytes, qos: int, properties: Any
-):
-    print(
-        "Received message to specific topic and QoS=2: ", topic, payload.decode(), qos, properties
-    )
+async def message_to_topic_with_high_qos(  # recebendo mensagem enviada.
+    client: MQTTClient, topic: str, payload: bytes, qos: int, properties: Any):
+    print("Received message to specific topic and QoS=2: ", topic, payload.decode(), qos, properties)
 
 
 @fast_mqtt.on_disconnect()
