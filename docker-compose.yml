@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+
+#  mosquitto:
+#    image: eclipse-mosquitto:latest
+#    ports:
+#      - "1883:1883"
+#    volumes:
+#      - type: bind
+#        source: ./mosquitto.conf
+#        target: /mosquitto/config/mosquitto.conf
+#    restart: always
+
+  postgresql:
+    image: postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: db
+    volumes:
+      - /var/cache/pgdata:/var/lib/postgresql/data
+
+#  pgadmin:
+#      image: dpage/pgadmin4
+#      environment:
+#        PGADMIN_DEFAULT_EMAIL: "admin@gmail.com"
+#        PGADMIN_DEFAULT_PASSWORD: "admin"
+#      ports:
+#        - "5050:80"
+#      depends_on:
+#        - postgresql
+
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - .:/app
+#    command: /start-reload.sh
+#    depends_on:
+#      - postgresql
+#      mosquitto:
+#        condition: service_started
