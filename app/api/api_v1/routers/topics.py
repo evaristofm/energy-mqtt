@@ -9,7 +9,7 @@ from app.mqtt.client import fast_mqtt
 router = APIRouter()
 
 # fake topic list
-FAKE_TOPICS_LIST = ("/foo", "/bar")
+FAKE_TOPICS_LIST = ("/foo", "/bar", "/messages")
 
 
 @router.get("/", response_model=List[TopicSchema])
