@@ -38,11 +38,10 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "8000:8000"
     volumes:
       - .:/app
     command: /start-reload.sh
     depends_on:
       - postgresql
-      mosquitto:
-        condition: service_started
+      - mosquitto
