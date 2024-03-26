@@ -1,7 +1,7 @@
 # energy-fastapi-broker-mosquitto
 
 
-## Prerequisites
+## Pre requisitos
 -  docker e docker-compose
 
   - Build o projeto usando docker-compose:
